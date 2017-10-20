@@ -8,7 +8,7 @@ float[][] edgeKernel = {
   { -1, -1, -1 }
 };
 
-// Smaller valures give more details but mke the CPU suffer
+// Smaller valures give more details but make the CPU suffer
 final float EDGE_THRESHOLD = 128;
 
 // Only connect points below this distance to avoid long ugly lines
