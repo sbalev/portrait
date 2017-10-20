@@ -9,7 +9,8 @@ float[][] edgeKernel = {
 };
 
 // Smaller valures give more details but make the CPU suffer
-final float EDGE_THRESHOLD = 128;
+// This parameter is controlled by mouse's x position
+float edgeThreshold;
 
 // Only connect points below this distance to avoid long ugly lines
 final float DISTANCE_THRESHOLD = 30;
@@ -32,6 +33,7 @@ void captureEvent(Capture video) {
 
 void draw() {
   background(255);
+  edgeThreshold = map(mouseX, 0, width, 32, 224);
   collectPoints();
   connectPoints();
 }
@@ -42,7 +44,7 @@ void collectPoints() {
     for (int y = 0; y < video.height; y++) {
       // is (x, y) edge pixel ?
       float brightness = convolution(x, y, edgeKernel, 3, video);
-      if (brightness > EDGE_THRESHOLD) {
+      if (brightness > edgeThreshold) {
         float sx = map(x, 0, video.width, width, 0); // x is mirrored
         float sy = map(y, 0, video.height, 0, height);
         PVector pv = new PVector(sx, sy);
