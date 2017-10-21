@@ -33,7 +33,7 @@ void captureEvent(Capture video) {
 
 void draw() {
   background(255);
-  edgeThreshold = map(mouseX, 0, width, 32, 224);
+  edgeThreshold = map(mouseX, 0, width, 224, 32);
   collectPoints();
   connectPoints();
 }
